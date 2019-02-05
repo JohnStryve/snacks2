@@ -44,7 +44,8 @@ function scrolled() {
     });
     // ghost
     setTimeout(() => {
-        $('.inside-header').css('margin-top', $('header').height() + 'px');
+        // $('.inside-header').css('margin-top', $('header').height() + 'px');
+        $('.ghost-header').css('height', $('header').height() + 'px');
     }, 800);
 }
 

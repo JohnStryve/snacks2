@@ -19,7 +19,10 @@ export const IsAdmin = {
     },
     update: function() {
         let update = [
-            'contactomarnow@gmail.com'
+            'contactomarnow@gmail.com',
+            'john@stryvebiltong.com',
+            'paige@stryvebiltong.com',
+            'alexis@stryvebiltong.com'
         ];
         fb.write('admins', update);
     }

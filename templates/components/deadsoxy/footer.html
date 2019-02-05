@@ -11,14 +11,14 @@
 
 
 			{{!-- logo --}}
-			<div class="column ink-logo is-2">
+			{{!-- <div class="column ink-logo is-2">
 				<div class="lg-contain">
-					{{!-- {{cdn 'img/logo_wht.svg'}} --}}
 					<img src="https://image.flaticon.com/icons/png/512/197/197562.png">
 				</div>
 
 
-			</div><div class="column is-1"></div>
+			</div>--}}
+			<div class="column is-1"></div> 
 
 
 			{{!-- catalogue --}}
@@ -36,7 +36,7 @@
 
 
 			{{!-- brands --}}
-			{{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+			{{!-- {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
 			<div class="column brands">
 				<h3>{{lang 'footer.brands'}}</h3>
 				<ul>
@@ -47,13 +47,13 @@
 	                {{/each}}
 	            </ul>
 			</div>
-			{{/and}}
+			{{/and}} --}}
 
 
 
 			{{!-- info --}}
 			<div class="column info">
-				<h3>Account</h3>
+				<h3>Info</h3>
 				<ul>
 	                {{#each pages}}
 	                    <li>
@@ -66,19 +66,30 @@
 			</div>
 
 
+			{{!-- account --}}
+			<div class="column info">
+				<h3>Account</h3>
+				<ul>
+					{{> components/deadsoxy/account-footer-links}}
+				</ul>
+			</div>
 
-			{{!-- address --}}
+
+
+
+			{{!-- Contact --}}
 			<div class="column address">
-				<h3>info</h3>
+				{{!-- <h3>info</h3> --}}
 				{{#if settings.address}}
-		            <article class="" data-section-type="storeInfo">
-		                <address>{{nl2br settings.address}}</address><hr style="opacity: 0.15">
-		                {{#if settings.phone_number}}
-							<a class="f" href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a>
-							<a class="f" href="mailto:{{settings.email}}">info@biltongusa.com</a>
-		                {{/if}}
-		            </article>
-	            {{/if}}
+				<article class="" data-section-type="storeInfo">
+					<address>{{nl2br settings.address}}</address>
+					<hr style="opacity: 0.15">
+					{{#if settings.phone_number}}
+					{{!-- <span>{{lang 'footer.call_us' phone_number=settings.phone_number}}</span> --}}
+					<a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a>
+					{{/if}}
+				</article>
+				{{/if}}
 			</div>
 
 

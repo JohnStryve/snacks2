@@ -212,6 +212,14 @@ export default class Home extends PageManager {
 				// config
 				self.options.addRemoveLinks = true;
 				self.options.dictRemoveFile = "Delete";
+				// self.on('error', function (file, errorMessage) {
+				// 	if (file.accepted) {
+				// 		var mypreview = document.getElementsByClassName('dz-error');
+				// 		mypreview = mypreview[mypreview.length - 1];
+				// 		mypreview.classList.toggle('dz-error');
+				// 		mypreview.classList.toggle('dz-success');
+				// 	}
+				// });
 				//New file added
 				self.on("addedfile", function (file) {
 					if (this.files[1]!=null){
@@ -224,6 +232,7 @@ export default class Home extends PageManager {
 					var ths = this;
 					setTimeout( function(){
 						// preview
+						console.log('previewing: ', file);
 						$(el).find(prevEl+' img').attr('src', file.dataURL);
 						$(el).find(prevEl).removeClass('hide');
 						$(el).find('.button.save').click( function(){

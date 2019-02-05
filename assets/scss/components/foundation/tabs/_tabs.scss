@@ -10,7 +10,7 @@
 
 .tab {
     border-top: $tab-active-border;
-    float: none;
+    float: none !important;
 
     @include breakpoint("medium") {
         border-top-color: $tab-title-border-color;

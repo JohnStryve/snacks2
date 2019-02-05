@@ -18,11 +18,11 @@ export default function addtocart_deadsoxy(quick) {
     /**
      * move button & reveal
      */
-    $button.each( function() {
+    $button.each(function () {
         const pId = $(this).data('submits');
         const $container = $(this).closest('article');
         const $buttonHome = (quick) ? $(`.deadsoxy_quick_addtocart_${pId}`) : $(`.deadsoxy_addtocart_${pId}`, $container);
-        if($buttonHome.length) {
+        if ($buttonHome.length) {
             $buttonHome.append($(this));
             $(this).removeClass('hide');
         }
@@ -90,11 +90,15 @@ export default function addtocart_deadsoxy(quick) {
             });
             return;
         }
-        const url = $("[name='url']",form).val();
-        const productId = $("[name='product_id']",form).val();
-        const qty = $("[name='qty[]']",form).val();
+        const url = $("[name='url']", form).val();
+        const productId = $("[name='product_id']", form).val();
+        const qty = $("[name='qty[]']", form).val();
 
-        console.log({url:url, productId:productId, qty:qty});
+        console.log({
+            url: url,
+            productId: productId,
+            qty: qty
+        });
 
         const $addToCartBtn = $(e.target);
         // const $addToCartBtn = $('[data-cart-item-add-2]', $(e.target));
@@ -124,28 +128,27 @@ export default function addtocart_deadsoxy(quick) {
                 console.error(errorMessage);
                 // Strip the HTML from the error message
                 const tmp = document.createElement('DIV');
-                const conflicting_options = $('[data-product-attribute]');
-                const conflicting_options_parent = $('[data-product-option-change]');
+                const conflicting_options = $('[data-product-option-change]');
+                const conflicting_options_parent = $('[data-cart-item-add]');
                 const conflicting_options_clone = conflicting_options.clone();
                 tmp.innerHTML = errorMessage;
 
                 // if the error is option related then launch options modal
-                if(errorMessage.includes('option')) {
+                if (errorMessage.includes('option')) {
                     return getOptions(productId, res => {
-                        // conflicting_options.remove();
-                        setTimeout(e=>{
+                        conflicting_options.remove();
+                        setTimeout(e => {
                             // maintain original qty
                             $('form.special').find('[name="qty[]"]').val(qty);
-                        },1000);
+                        }, 1000);
                         return swal({
                             html: res,
                             type: 'info',
                             width: 340,
                             confirmButtonText: "Add to Cart"
-                        }).then( (e) => {
-                            // conflicting_options_parent.append(conflicting_options_clone);
-                            return addProductToCart(e, $(`[pop-form]`)[0], (res)=>{
-                            });
+                        }).then((e) => {
+                            conflicting_options_parent.append(conflicting_options_clone);
+                            return addProductToCart(e, $(`[pop-form]`)[0], (res) => {});
                         });
                     });
                 }
@@ -158,7 +161,7 @@ export default function addtocart_deadsoxy(quick) {
 
             updateCartContent(response.data.cart_item.hash);
 
-            if(callback) {
+            if (callback) {
                 callback();
             }
         });
@@ -167,8 +170,10 @@ export default function addtocart_deadsoxy(quick) {
 
     function getOptions(productId, next) {
         console.log('getOptions: ', productId);
-        utils.api.product.getById(productId, { template: 'deadsoxy/products/options_modal' }, (err, response) => {
-           next(response);
+        utils.api.product.getById(productId, {
+            template: 'deadsoxy/products/options_modal'
+        }, (err, response) => {
+            next(response);
         });
     }
 
@@ -197,13 +202,13 @@ export default function addtocart_deadsoxy(quick) {
             $cartCounter.addClass('cart-count--positive');
             $body.trigger('cart-quantity-update', quantity);
 
-            setTimeout( function() {
+            setTimeout(function () {
                 hide_popup($confirmationPop);
-            },8000);
-                
+            }, 8000);
 
 
-            $('[data-reveal-close]', $confirmationPop).click( function() {
+
+            $('[data-reveal-close]', $confirmationPop).click(function () {
                 hide_popup($confirmationPop)
             })
 
@@ -221,10 +226,10 @@ export default function addtocart_deadsoxy(quick) {
      * Hide popup
      */
 
-     function hide_popup($confirmationPop) {
+    function hide_popup($confirmationPop) {
         $confirmationPop.addClass('hide');
         $confirmationPop.html('');
-     }
+    }
 
 
 
@@ -261,4 +266,3 @@ export default function addtocart_deadsoxy(quick) {
 
 
 }
-
