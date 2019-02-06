@@ -127,6 +127,16 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
                 //     'context':context,
                 //     'pageType':pageType,
                 // });
+
+                // shop link
+                let buyLink = (pageType !== 'default') ? '/shop-all/' : '#buy'
+                $('[data-shopRef]').attr('href', buyLink)
+                
+                // contact link
+                let contactLink = (pageType !== 'default') ? '/contact-us/' : '#contact'
+                $('[data-contactRef]').attr('href', contactLink)
+
+                
                 if (typeof pageClassImporter === 'function') {
                     PageClass = (await pageClassImporter()).default;
                 }

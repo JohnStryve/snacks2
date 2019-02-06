@@ -60,10 +60,16 @@ blog:
 
             {{#if products.featured}}
                 <div class="p2em"></div>
-                <div class="container">
+                <div class="container" id="buy">
                     {{> components/products/featured products=products.featured title="Featured"}}
                 </div>
             {{/if}}
+            
+
+            <div class="container home-contact-us light-g p1em" id="contact">
+                <h2 class="tac">Contact Us</h2>
+                {{> components/page/contact-us-form2}}
+            </div>
 
             <div class="p2em hide-on-mobile"></div>
 

@@ -3,25 +3,40 @@
         {{> components/common/quick-search}}
     </div>
     <ul class="navPages-list">
-        
+
         {{!-- shop by style --}}
         {{!-- <li class="navPages-item" data-mega-toggle="_brands"> --}}
-           {{!-- <a class="navPages-action" href="javascript:void(0)">shop by style</a> --}}
-           {{!-- brand-drop --}}
-        {{!-- </li> --}}
+            {{!-- <a class="navPages-action" href="javascript:void(0)">shop by style</a> --}}
+            {{!-- brand-drop --}}
+            {{!-- </li> --}}
 
-        {{!-- catelog --}}
-        {{#each categories}}
-        {{#if @index '<' 4}}
-            <li class="navPages-item category-{{name}} category-{{id}}">
-                <a class="navPages-action" href="{{url}}">{{name}}</a>
-            </li>
-        {{/if}}
-        {{/each}}
-        
+        <!--{{!-- catelog --}}-->
+        <!--{{#each categories}}-->
+        <!--{{#if @index '<' 4}}-->
+        <!--    <li class="navPages-item category-{{name}} category-{{id}}">-->
+        <!--        <a class="navPages-action" href="{{url}}">{{name}}</a>-->
+        <!--    </li>-->
+        <!--{{/if}}-->
+        <!--{{/each}}-->
+
+        {{!-- goto shop --}}
+        <li class="navPages-item">
+            <a class="navPages-action" data-shopRef>Shop</a>
+        </li>
+
         {{!-- about --}}
-        <li class="navPages-item hide">
-           <a class="navPages-action" href="/style">About</a>
+        <li class="navPages-item">
+            <a class="navPages-action" href="/about-us/">Our Story</a>
+        </li>
+
+        {{!-- whats biltong --}}
+        <li class="navPages-item">
+            <a class="navPages-action" href="/what-is-biltong/">What is Biltong</a>
+        </li>
+
+        {{!-- contact --}}
+        <li class="navPages-item">
+            <a class="navPages-action" data-contactRef href="#contact-us">Contact</a>
         </li>
 
         {{!-- Search Trigger --}}
@@ -31,7 +46,8 @@
 
         {{!-- Cart Trigger --}}
         <li class="navPages-item a--cart">
-            <a class="navUser-action2 lv1 navPages-action pr" data-cart-preview data-dropdown="cart-preview-dropdown1" data-options="align:right">
+            <a class="navUser-action2 lv1 navPages-action pr" data-cart-preview data-dropdown="cart-preview-dropdown1"
+                data-options="align:right">
                 <i class="fa fa-shopping-basket"></i>
                 {{#if cart.items}}<span class="badge qty">{{cart.quantity}}</span>{{/if}}
             </a>
@@ -50,14 +66,14 @@
             <div class="dropdown-menu fixed" id="cart-preview-dropdown1" data-dropdown-content aria-hidden="true">
             </div>
         </li> --}}
-                
+
         {{!-- pages --}}
         {{!-- {{#unless theme_settings.hide_content_navigation}}
-            {{#each pages}}
-                 <li class="navPages-item navPages-item-page">
-                     <a class="navPages-action" href="{{url}}">{{name}}**</a>
-                 </li>
-             {{/each}}
+        {{#each pages}}
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action" href="{{url}}">{{name}}**</a>
+        </li>
+        {{/each}}
         {{/unless}} --}}
 
     </ul>
@@ -73,33 +89,33 @@
     var $header = $('.header');
     var a_class = "is-active1";
 
-    m_trigger.click( function(e){
+    m_trigger.click(function (e) {
         console.log('m_trigger.click');
-        var 
+        var
             $this = $(this),
             data = $this.data('mega-toggle'),
-            data_el = $('#'+data),
+            data_el = $('#' + data),
             isOpen = data_el.hasClass(o),
-            input = $('#'+data+':first *:input[type!=hidden]:first').focus()
-        ;
+            input = $('#' + data + ':first *:input[type!=hidden]:first').focus()
+            ;
 
-        $('.'+o).removeClass(o);
-        $('.'+a_class).removeClass(a_class);
+        $('.' + o).removeClass(o);
+        $('.' + a_class).removeClass(a_class);
 
         (isOpen) ? close(data_el, $this) : opeN(data_el, $this);
-        $('#'+data+':first *:input[type!=hidden]:first').focus();
+        $('#' + data + ':first *:input[type!=hidden]:first').focus();
         scroll_listener(data_el, $this);
         bodyClickListen(data_el, $this);
         megaTop();
     });
-    
-    function close(data_el, $t){
+
+    function close(data_el, $t) {
         $t.removeClass(a_class);
         $header.removeClass('dark-bg');
         data_el.removeClass(o);
     }
 
-    function opeN(data_el, $t){
+    function opeN(data_el, $t) {
         $t.addClass(a_class);
         $header.addClass('dark-bg');
         data_el.addClass(o);
@@ -107,40 +123,40 @@
 
     function bodyClickListen(data_el, $t) {
         $('body').unbind();
-        $('body').click(function(e) {
-             if ($(e.target).closest('.mega').length === 0) {
+        $('body').click(function (e) {
+            if ($(e.target).closest('.mega').length === 0) {
                 close(data_el, $t);
-             }
+            }
         });
 
     }
 
     function scroll_listener(data_el, $t) {
         $(window).unbind();
-        $(window).scroll(function() {
+        $(window).scroll(function () {
             var y_scroll_pos = window.pageYOffset;
             var scroll_pos_test = 100;
-            if(y_scroll_pos > scroll_pos_test) {
+            if (y_scroll_pos > scroll_pos_test) {
                 // console.log('SCROLLED');
-             $("body").addClass('scrolled');
-             close(data_el, $t);
+                $("body").addClass('scrolled');
+                close(data_el, $t);
             }
             else {
                 // console.log('UN-SCROLLED');
-              $("body").removeClass('scrolled');
+                $("body").removeClass('scrolled');
             }
         });
     }
 
     function megaTop() {
-        setTimeout( function() {
+        setTimeout(function () {
             var headerHeight = $('header').outerHeight();
-            $('.mega').css('top', headerHeight+'px');
-        },10);
+            $('.mega').css('top', headerHeight + 'px');
+        }, 10);
     }
 
-    function hasC (element, className) {
-      return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+    function hasC(element, className) {
+        return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
     }
 
     // limit();
@@ -149,9 +165,3 @@
     //     $('.navPages-list li:gt(3)').show();
     // }
 </script>
-
-
-
-
-
-

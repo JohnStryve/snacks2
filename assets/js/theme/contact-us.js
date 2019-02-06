@@ -3,12 +3,16 @@ import nod from './common/nod';
 import $ from 'jquery';
 import forms from './common/models/forms';
 
-export default class ContactUs extends PageManager {
-    loaded() {
-        this.registerContactFormValidation();
-    }
 
-    registerContactFormValidation() {
+export default class ContactUs extends PageManager {
+
+    loaded(context1) {
+        this.registerContactFormValidation(context1);
+    }
+    
+    registerContactFormValidation(context1) {
+        console.log("form loaded ===> ", context1);
+        this.context = (context1) ? context1 : this.context; 
         const formSelector = 'form[data-contact-form]';
         const contactUsValidator = nod({
             submit: `${formSelector} input[type="submit"]`,
@@ -37,6 +41,8 @@ export default class ContactUs extends PageManager {
         ]);
 
         $contactForm.on('submit', event => {
+            // event.preventDefault();
+            
             contactUsValidator.performCheck();
 
             if (contactUsValidator.areAll('valid')) {

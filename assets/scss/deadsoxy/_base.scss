@@ -707,10 +707,10 @@ body.scrolled {
 			display: block;
 			max-width: 200px;
 		}
+		position: relative;
 	}
 
 	@include bp(L-phone) {
-		position: relative;
 
 		.icon-menu {
 			position: relative;
@@ -1595,7 +1595,7 @@ body.scrolled {
 		}
 	}
 
-	@include bp(L-phone) {
+	@include bp(m-tablet) {
 		height: 59vh;
 	}
 }
@@ -1751,7 +1751,13 @@ $itm_w: 20%;
 // | $$  | $$|  $$$$$$/| $$ | $$ | $$|  $$$$$$$
 // |__/  |__/ \______/ |__/ |__/ |__/ \_______/
 
-
+.home-contact-us {
+	// padding-top: 1em;
+	border-radius: 0.5em;
+	h2{
+		padding-bottom: 1em;
+	}
+}
 
 section.home1 {
 
@@ -2803,7 +2809,7 @@ body.inside {
 	}
 
 	.productView-rating svg {
-		fill: rgba(#000, 0.1);
+		fill: rgba(#000, 0.4);
 	}
 
 	.col-right {
@@ -3440,7 +3446,7 @@ $right-accent: $purple;
 	}
 
 	.icon svg {
-		fill: rgba(#fff, 0.1);
+		fill: rgba(#000, 0.2);
 	}
 }
 

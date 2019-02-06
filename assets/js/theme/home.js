@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Dropzone from 'dropzone';
 import {fb} from './common/firebase';
 import {IsAdmin} from './common/isadmin';
+import ContactUs from './contact-us';
 
 export default class Home extends PageManager {
 	loaded(next) {
@@ -10,6 +11,7 @@ export default class Home extends PageManager {
 		this.getHomeData();
 		// this.pressCar();
 		this.admin();
+		this.contact();
 		next();
 	}
 	admin() {
@@ -23,6 +25,23 @@ export default class Home extends PageManager {
 			}
 		});
 		// console.log(isAdmin)
+	}
+
+
+	contact() {
+		const form = $("form[data-contact-form]");
+		form.on('submit', event => {
+			let data = {
+				contact_fullname: $("[name='contact_fullname']", form).val(),
+				contact_phone: $("[name='contact_phone']", form).val(),
+				contact_email: $("[name='contact_email']", form).val(),
+				contact_question: $("[name='contact_question']", form).val(),
+				submit_date: Date.now(),
+			}
+			console.log(data);
+			event.preventDefault();
+			fb.post(`contact_form`, data);
+		});
 	}
 	
 
@@ -161,7 +180,6 @@ export default class Home extends PageManager {
 		fb.write(`quotes/${data.id}`, data);
 		$('.contextMenu_press input').val('');
 	}
-
 
 
 

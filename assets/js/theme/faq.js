@@ -86,7 +86,7 @@ export default class faq extends PageManager {
     }
 
     renderItems(catSlug) {
-    	console.log(catSlug);
+    	// console.log(catSlug);
     	var tmpl = $.templates("#questions_markup");
 		var questions = Object.values([FAQs[catSlug]][0]);
 		var html = tmpl.render(questions); // ready for insertion...
@@ -97,10 +97,10 @@ export default class faq extends PageManager {
     tabListener() {
     	const self = this;
 
-    	// default to placing-an-order
-		$(`[data-slug="placing-an-order"]`).closest('li').addClass('active');
-		$('.tab-pane#placing-an-order').addClass('active');
-		self.renderItems("placing-an-order")
+		// default to general
+		$(`[data-slug="general"]`).closest('li').addClass('active');
+		$('.tab-pane#general').addClass('active');
+		self.renderItems("general")
 
 		// trigger
     	$('[data-slug]').click( function() {
