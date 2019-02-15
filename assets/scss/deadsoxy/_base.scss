@@ -462,7 +462,7 @@ body.scrolled {
 		margin-left: 5rem;
 
 		h1 {
-			font-size: 5em;
+			font-size: 4em;
 			line-height: 1em;
 		}
 
@@ -481,10 +481,16 @@ body.scrolled {
 			font-size: 0.9em;
 			margin: 0;
 			padding: 3em !important;
-
+			
 			h1 {
 				font-size: 3em;
 				line-height: 1.2em;
+			}
+		}
+		@include bp(L-phone) {
+			h1 {
+				font-size: 2em;
+				padding-top: 15vh;
 			}
 		}
 	}
@@ -671,7 +677,7 @@ body.scrolled {
 					display: inline-block;
 
 					&[data-mega-toggle="_search"] {
-						display: none !important;
+						// display: none !important;
 					}
 
 					a {
@@ -735,7 +741,7 @@ body.scrolled {
 	}
 
 	@include bp(phone-port) {
-		position: static;
+		// position: static;
 		padding-bottom: 1em;
 
 		.icon-menu {
@@ -2163,12 +2169,12 @@ section.home1 {
 // | $$       /$$__  $$| $$      | $$  | $$
 // |  $$$$$$$|  $$$$$$$| $$      |  $$$$$$$
 //  \_______/ \_______/|__/       \_______/
-// li.product {
-.page-sidebar+.page-content .productGrid .product {
+li.product {
+// .page-sidebar+.page-content .productGrid .product {
 
 	// width: 25% !important;
 	@include bp(L-phone) {
-		width: 50% !important;
+		width: 100% !important;
 	}
 }
 
@@ -2208,7 +2214,8 @@ article.card {
 	figure a {
 		.card-img-container {
 			height: 14em;
-
+			text-align: center;
+			padding-top: 1em;
 			img {}
 
 			&:after {
@@ -3364,10 +3371,6 @@ $right-accent: $purple;
 		text-align: left;
 	}
 
-	.socialLinks {
-		display: inline-block;
-		margin: 0;
-	}
 
 	#wishlist-dropdown {
 		@extend .inline;
@@ -3381,6 +3384,15 @@ $right-accent: $purple;
 	}
 
 
+}
+
+.socialLinks {
+	display: inline-block;
+	margin: 0;
+
+	.icon svg {
+		fill: #fff !important;
+	}
 }
 
 .page.container {
